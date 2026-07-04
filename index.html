@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Secret Friendship Vault ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
+background:#090b18;
+}
+
+/* Animated Background */
+
+body::before{
+content:"";
+position:absolute;
+width:300%;
+height:300%;
+background:
+radial-gradient(circle,#ff4d6d33 2px,transparent 2px);
+background-size:60px 60px;
+animation:bg 25s linear infinite;
+}
+
+@keyframes bg{
+from{transform:translate(0,0);}
+to{transform:translate(-400px,-400px);}
+}
+
+.container{
+position:relative;
+z-index:2;
+width:92%;
+max-width:400px;
+padding:30px;
+border-radius:25px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(15px);
+text-align:center;
+box-shadow:0 0 40px rgba(255,80,120,.25);
+border:1px solid rgba(255,255,255,.15);
+}
+
+.lock{
+font-size:80px;
+transition:.5s;
+}
+
+h1{
+color:white;
+margin-top:10px;
+}
+
+p{
+color:#ddd;
+margin:20px 0;
+line-height:1.7;
+}
+
+button{
+padding:15px 35px;
+font-size:18px;
+border:none;
+border-radius:50px;
+background:linear-gradient(45deg,#ff4d6d,#ff7eb3);
+color:white;
+cursor:pointer;
+transition:.3s;
+box-shadow:0 0 20px #ff4d6d;
+}
+
+button:hover{
+transform:scale(1.08);
+}
+
+.hidden{
+display:none;
+margin-top:25px;
+animation:appear 1.2s;
+}
+
+@keyframes appear{
+
+from{
+opacity:0;
+transform:translateY(40px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+.letter{
+padding:20px;
+border-radius:20px;
+background:white;
+color:#333;
+line-height:1.8;
+font-size:16px;
+}
+
+.shake{
+animation:shake .4s;
+}
+
+@keyframes shake{
+
+0%{transform:translateX(0);}
+20%{transform:translateX(-8px);}
+40%{transform:translateX(8px);}
+60%{transform:translateX(-8px);}
+80%{transform:translateX(8px);}
+100%{transform:translateX(0);}
+
+}
+
+/* Floating hearts */
+
+.icon{
+position:absolute;
+font-size:22px;
+animation:float 7s linear forwards;
+pointer-events:none;
+}
+
+@keyframes float{
+
+0%{
+transform:translateY(100vh) rotate(0deg);
+opacity:0;
+}
+
+10%{
+opacity:1;
+}
+
+100%{
+transform:translateY(-120vh) rotate(360deg);
+opacity:0;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container" id="box">
+
+<div class="lock" id="lock">🔒</div>
+
+<h1>Friendship Vault</h1>
+
+<p>
+A secret message is locked inside...
+Only my best friend can open it.
+</p>
+
+<button onclick="unlock()">
+Unlock ❤️
+</button>
+
+<div class="hidden" id="letter">
+
+<div class="letter">
+
+<h2>Dear Bestie 💖</h2>
+
+<br>
+
+Thank you for being the person who always makes life brighter.
+
+Every memory with you is priceless.
+
+No matter where life takes us,
+I hope our friendship always stays strong.
+
+You're truly one of my favorite people,
+and I'm grateful to have you.
+
+✨ Stay awesome. Stay happy. Stay YOU. ✨
+
+❤️
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function unlock(){
+
+document.getElementById("lock").innerHTML="🔓";
+
+document.getElementById("box").classList.add("shake");
+
+document.getElementById("letter").style.display="block";
+
+confetti({
+particleCount:250,
+spread:180,
+origin:{y:.6}
+});
+
+setTimeout(()=>{
+confetti({
+particleCount:120,
+angle:60,
+origin:{x:0}
+});
+
+confetti({
+particleCount:120,
+angle:120,
+origin:{x:1}
+});
+},500);
+
+}
+
+setInterval(()=>{
+
+let icon=document.createElement("div");
+
+icon.className="icon";
+
+icon.innerHTML=Math.random()>0.5?"❤️":"⭐";
+
+icon.style.left=Math.random()*100+"vw";
+
+icon.style.fontSize=(18+Math.random()*18)+"px";
+
+icon.style.animationDuration=(5+Math.random()*4)+"s";
+
+document.body.appendChild(icon);
+
+setTimeout(()=>{
+
+icon.remove();
+
+},9000);
+
+},350);
+
+</script>
+
+</body>
+</html>
